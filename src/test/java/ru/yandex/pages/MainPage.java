@@ -20,15 +20,27 @@ public class MainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    public void clickFirstAccordionButton() {
-        driver.findElement(By.className("accordion__heading")).click();
+    public void clickFirstAccordionButton1() {
+        driver.findElement(By.id("accordion__heading-0")).click();
     }
 
 
     //Проверка на соотвествие текста в выпадающем поле
-    public void checkAccordionTextMenu() {
+    public void checkAccordionTextMenu1() {
         String expected = "Сутки — 400 рублей. Оплата курьеру — наличными или картой.";
         String actual = driver.findElement(By.id("accordion__panel-0")).getText();
+        Assert.assertEquals(expected, actual);
+    }
+
+    public void clickFirstAccordionButton2() {
+        driver.findElement(By.id("accordion__heading-1")).click();
+    }
+
+
+    //Проверка на соотвествие текста в выпадающем поле
+    public void checkAccordionTextMenu2() {
+        String expected = "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.";
+        String actual = driver.findElement(By.id("accordion__panel-1")).getText();
         Assert.assertEquals(expected, actual);
     }
 

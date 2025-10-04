@@ -47,7 +47,6 @@ public class BookScooterTest {
     public void testOrderButtonUp() {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickFirstButtonToBook();
-        mainPage.clickSecondButtonToBook();
 
         doOrder();
     }
@@ -56,8 +55,6 @@ public class BookScooterTest {
     public void testOrderButtonDown() {
         MainPage mainPage = new MainPage(driver);
         mainPage.scrollPageDown();
-        mainPage.clickFirstAccordionButton();
-        mainPage.checkAccordionTextMenu();
         mainPage.clickSecondButtonToBook();
 
         doOrder();
