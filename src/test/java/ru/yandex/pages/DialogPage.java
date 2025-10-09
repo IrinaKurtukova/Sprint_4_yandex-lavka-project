@@ -12,8 +12,10 @@ public class DialogPage {
     }
 
     //Кнопка "Да"
-    public void buttonYesClick() {
-        driver.findElement(By.xpath("//button[contains(@class, 'Button_Middle__1CSJM') and text()='Да']")).click();
-    }
+    private final By buttonYes = By.xpath("//button[contains(@class, 'Button_Middle__1CSJM') and text()='Да']");
 
+    //Нажимаем на кнопку "Да"
+    public void buttonYesClick() {
+        driver.findElement(buttonYes).click();
+    }
 }

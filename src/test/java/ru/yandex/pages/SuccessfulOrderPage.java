@@ -12,9 +12,14 @@ public class SuccessfulOrderPage {
         this.driver = driver;
     }
 
+    //Текстовый элемент в форме об успешном оформлении заказа
+    private final By textInForm = By.className("Order_ModalHeader__3FDaJ");
+    //Кнопка Посмотреть статус
+    private final By buttonStatus = By.xpath("//button[text()='Посмотреть статус']");
+
     //Проверяем содержимое окна об успешном оформлении заказа
     public void checkingTextInForm() {
-        String actual = driver.findElement(By.className("Order_ModalHeader__3FDaJ")).getText();
+        String actual = driver.findElement(textInForm).getText();
         String expected = "Заказ оформлен\nНомер заказа: .  Запишите его:\nпригодится, чтобы отслеживать статус";
 
         Assert.assertEquals(expected, actual);
@@ -22,7 +27,7 @@ public class SuccessfulOrderPage {
 
     //Кнопка Посмотреть статус
     public void clickButtonStatus() {
-        driver.findElement(By.xpath("//button[text()='Посмотреть статус']")).click();
+        driver.findElement(buttonStatus).click();
     }
 
 }

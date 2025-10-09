@@ -13,6 +13,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import ru.yandex.data.PersonalDetails;
 import ru.yandex.pages.*;
 
+import static ru.yandex.pages.MainPage.PageURL;
+
 
 @RunWith(Parameterized.class)
 public class BookScooterTest {
@@ -26,7 +28,7 @@ public class BookScooterTest {
 
 //        FirefoxOptions options = new FirefoxOptions();
 //        driver = new FirefoxDriver(options);
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(PageURL);
     }
 
     private final PersonalDetails personalDetails;
@@ -35,7 +37,7 @@ public class BookScooterTest {
         this.personalDetails = personalDetails;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0}")
     public static Object[][] getPersonalDetails() {
         return new Object[][]{
                 {new PersonalDetails("Иван", "Иванов", "Москва, ул. Тверская, 1", "Тверская")},
@@ -47,7 +49,6 @@ public class BookScooterTest {
     public void testOrderButtonUp() {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickFirstButtonToBook();
-
         doOrder();
     }
 
@@ -56,7 +57,6 @@ public class BookScooterTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.scrollPageDown();
         mainPage.clickSecondButtonToBook();
-
         doOrder();
     }
 
@@ -65,7 +65,7 @@ public class BookScooterTest {
         authorizationPage.fillFieldsAuthorizationForm(personalDetails);
         authorizationPage.fillingMetroStationField(personalDetails);
         authorizationPage.fillingPhoneNumberField();
-        authorizationPage.buttonFurther();
+        authorizationPage.buttonFurtherClick();
 
         RentScooterPage rentScooterPage = new RentScooterPage(driver);
         rentScooterPage.whenBringScooterField();

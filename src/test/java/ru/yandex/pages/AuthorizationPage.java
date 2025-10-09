@@ -17,33 +17,50 @@ public class AuthorizationPage {
         this.driver = driver;
     }
 
-    // Поля Имя, Фамилия, Адрес, куда привезти
-    public void fillFieldsAuthorizationForm(PersonalDetails personalDetails) {
-        driver.findElement(By.xpath("//*[@placeholder='* Имя']")).sendKeys(personalDetails.name);
-        driver.findElement(By.xpath("//*[@placeholder='* Фамилия']")).sendKeys(personalDetails.surname);
-        driver.findElement(By.xpath("//*[@placeholder='* Адрес: куда привезти заказ']")).sendKeys(personalDetails.address);
+    //Поле Имя
+    private final By nameField = By.xpath("//*[@placeholder='* Имя']");
+    //Поле Фамилия
+    private final By surnameField = By.xpath("//*[@placeholder='* Фамилия']");
+    //Поле Адрес, куда привезти
+    private final By addressField = By.xpath("//*[@placeholder='* Адрес: куда привезти заказ']");
+    //Поле Станция метро
+    private final By metroStationField = By.xpath("//*[@placeholder='* Станция метро']");
+    //Поле Станция метро -> выпадает список
+    private final By metroStationDropdown = By.className("select-search__select");
+    //Название станции из выпадающего списка
+    private final By metroStationName = By.className("Order_Text__2broi");
+    //Поле Телефон
+    private final By phoneField = By.xpath("//*[@placeholder='* Телефон: на него позвонит курьер']");
+    //Кнопка Далее
+    private final By buttonFurther = By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM");
 
+
+    // Заполнение полей Имя, Фамилия, Адрес, куда привезти
+    public void fillFieldsAuthorizationForm(PersonalDetails personalDetails) {
+        driver.findElement(nameField).sendKeys(personalDetails.name);
+        driver.findElement(surnameField).sendKeys(personalDetails.surname);
+        driver.findElement(addressField).sendKeys(personalDetails.address);
     }
 
     //Поле Станция метро
     public void fillingMetroStationField(PersonalDetails personalDetails) {
-        driver.findElement(By.xpath("//*[@placeholder='* Станция метро']")).click();
-        driver.findElement(By.xpath("//*[@placeholder='* Станция метро']")).sendKeys(personalDetails.stationName);
+        driver.findElement(metroStationField).click();
+        driver.findElement(metroStationField).sendKeys(personalDetails.stationName);
 
         new WebDriverWait(driver, Duration.ofSeconds(7))
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("select-search__select")));
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(metroStationDropdown));
 
-        driver.findElement(By.className("Order_Text__2broi")).click();
+        driver.findElement(metroStationName).click();
     }
 
     //Поле Телефон
     public void fillingPhoneNumberField() {
-        driver.findElement(By.xpath("//*[@placeholder='* Телефон: на него позвонит курьер']")).click();
-        driver.findElement(By.xpath("//*[@placeholder='* Телефон: на него позвонит курьер']")).sendKeys("+79269999999");
+        driver.findElement(phoneField).click();
+        driver.findElement(phoneField).sendKeys("+79269999999");
     }
 
     //Кнопка Далее
-    public void buttonFurther() {
-        driver.findElement(By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM")).click();
+    public void buttonFurtherClick() {
+        driver.findElement(buttonFurther).click();
     }
 }

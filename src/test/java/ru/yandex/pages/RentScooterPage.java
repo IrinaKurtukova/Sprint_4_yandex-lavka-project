@@ -15,29 +15,42 @@ public class RentScooterPage {
         this.driver = driver;
     }
 
+    //Поле "Когда привезти самокат"
+    private final By chooseDateToBringScooterField = By.xpath("//*[@placeholder='* Когда привезти самокат']");
+    //Календаль в поле "Когда привезти самокат"
+    private final By calendar = By.className("react-datepicker__month-container");
+    //Выбор даты в календаре поля "Когда привезти самокат"
+    private final By calendarDate = By.xpath("//*[@aria-label='Choose среда, 8-е октября 2025 г.']");
+    //Поле "Срок аренды"
+    private final By rentalField = By.className("Dropdown-control");
+    //Значение в поле "Срок аренды"
+    private final By rentalDuration = By.xpath("//div[@role='option' and text()='четверо суток']");
+    //Кнопка Заказать (внизу)
+    private final By buttonToOrderLast = By.xpath("//button[contains(@class, 'Button_Middle__1CSJM') and text()='Заказать']");
+
+
     //Поле Когда привезти самокат
     public void whenBringScooterField() {
-        driver.findElement(By.xpath("//*[@placeholder='* Когда привезти самокат']")).click();
+        driver.findElement(chooseDateToBringScooterField).click();
 
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.className("react-datepicker__month-container")));
+                .until(ExpectedConditions.visibilityOfElementLocated(calendar));
 
-
-        driver.findElement(By.xpath("//*[@aria-label='Choose среда, 8-е октября 2025 г.']")).click();
+        driver.findElement(calendarDate).click();
     }
 
     //Поле Срок аренды
     public void rentalTerm() {
-        driver.findElement(By.className("Dropdown-control")).click();
+        driver.findElement(rentalField).click();
 
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.className("Dropdown-menu")));
+                .until(ExpectedConditions.visibilityOfElementLocated(rentalField));
 
-        driver.findElement(By.xpath("//div[@role='option' and text()='четверо суток']")).click();
+        driver.findElement(rentalDuration).click();
     }
 
     //Кнопка Заказать (внизу)
     public void orderButtonLast() {
-        driver.findElement(By.xpath("//button[contains(@class, 'Button_Middle__1CSJM') and text()='Заказать']")).click();
+        driver.findElement(buttonToOrderLast).click();
     }
 }
