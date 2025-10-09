@@ -13,7 +13,6 @@ import ru.yandex.pages.MainPage;
 
 import static ru.yandex.pages.MainPage.PageURL;
 
-
 @RunWith(Parameterized.class)
 public class FQATest {
 

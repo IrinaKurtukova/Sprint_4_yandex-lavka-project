@@ -26,8 +26,6 @@ public class MainPage {
 
     //Контейнер "Вопросы о важном"
     private final By questionsListFAQ = By.className("accordion");
-    //Стрелочка в поле с вопросом
-    //private final By dropdownIndicator = By.id("accordion__panel-0");
     //Кнопка Заказать (вверху)
     private final By firstButtonToBook = By.className("Button_Button__ra12g");
     //Кнопка Заказать (внизу)
